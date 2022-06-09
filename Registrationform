@@ -1,31 +1,24 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
 
 <div class="testbox">
-  <h1>Registration</h1>
+  <h1 style="color:white ;">Registration</h1>
 
   <form action="/">
-      <hr>
-    <div class="accounttype">
-      <input type="radio" value="None" id="radioOne" name="account" checked/>
-      <label for="radioOne" class="radio" chec>Personal</label>
-      <input type="radio" value="None" id="radioTwo" name="account" />
-      <label for="radioTwo" class="radio">Company</label>
-    </div>
+     
+   
   <hr>
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
   <input type="text" name="name" id="name" placeholder="Email" required/>
-  <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="name" id="name" placeholder="Name" required/>
+  
   <label id="icon" for="name"><i class="icon-shield"></i></label>
-  <input type="password" name="name" id="name" placeholder="Password" required/>
-  <div class="gender">
-    <input type="radio" value="None" id="male" name="gender" checked/>
-    <label for="male" class="radio" chec>Male</label>
-    <input type="radio" value="None" id="female" name="gender" />
-    <label for="female" class="radio">Female</label>
-   </div> 
-   <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
+  <input type="password" name="password" id="password" placeholder="Enter Password" required />
+  
+  <label id="icon" for="name"><i class="icon-shield"></i></label>
+  <input type="password" name="password" id="password" placeholder="Confirm Password" required/>
+  
+   <p style="color:white ;">By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
    <a href="#" class="button">Register</a>
   </form>
 </div>
@@ -72,11 +65,11 @@ html{
 .testbox {
   margin: 20px auto;
   width: 343px; 
-  height: 464px; 
+  height: 400px; 
   -webkit-border-radius: 8px/7px; 
   -moz-border-radius: 8px/7px; 
   border-radius: 8px/7px; 
-  background-color: #ebebeb; 
+  background:rgba(0, 0, 0, .6);
   -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
   -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
   box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
@@ -193,7 +186,7 @@ a.button {
   padding: 6px 25px 0px 20px;
   margin: 10px 8px 20px 0px;
   display: inline-block;
-  float: right;
+  /* float: right; */
   text-decoration: none;
   width: 50px; height: 27px; 
   -webkit-border-radius: 5px; 
@@ -216,4 +209,3 @@ a.button:hover {
   box-shadow: none;
   
 }
-
