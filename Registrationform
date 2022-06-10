@@ -10,7 +10,7 @@
    
   <hr>
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
-  <input type="text" name="name" id="name" placeholder="Email" required/>
+  <input type="text" name="name" id="name" placeholder="Enter Email Address" required/>
   
   <label id="icon" for="name"><i class="icon-shield"></i></label>
   <input type="password" name="password" id="password" placeholder="Enter Password" required />
@@ -22,7 +22,9 @@
    <a href="#" class="button">Register</a>
   </form>
 </div>
-----------------------------
+
+--------------CSS--------------
+
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, 
 pre, form, fieldset, input, textarea, p, blockquote, th, td { 
   padding:0;
