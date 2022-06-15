@@ -1,0 +1,12 @@
+ it("Should contain 'first name' in an array which return by ArrayList method.", () => {
+   const name = component.arrayList();
+   expect(name).toContain('first name');
+ });
+ ------------
+ it("arrayList method return array value Should equal to mockArray value.", () => {
+   const name = component.arrayList();
+   const mockArray = ['first name','last name', 'middle name'];
+   expect(name).toEqual(mockArray);
+ });
+ ---------
+ 
