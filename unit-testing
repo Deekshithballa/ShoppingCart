@@ -1,111 +1,80 @@
-------app.component.ts-----------
-import { Component } from '@angular/core';
+-----------order.service.specs.ts-------------
+import { TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  value = 0;
-  message!: string;
+import { OrderService } from './order.service';
 
-  increment() {
-    if (this.value < 15) {
-      this.value += 1;
-      this.message = '';
-    } else {
-      this.message = 'Maximum reached!';
-    }
-  }
+describe('OrderService', () => {
+  let service: OrderService;
 
-  decrement() {
-    if (this.value > 0) {
-      this.value -= 1;
-      this.message = '';
-    } else {
-      this.message = 'Minimum reached!';
-    }
-  }
-}
-------------app.component.html-------------
-<h1>{{ value }}</h1>
-
-<hr>
-
-<button (click)="increment()" class="increment">Increment</button>
-
-<button (click)="decrement()" class="decrement">Decrement</button>
-
-<p class="message">
-  {{ message }}
-</p>
----------------app.component.spec.ts---------
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
-import { AppComponent } from './app.component';
-
-describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let debugElement: DebugElement;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(AppComponent);
-    debugElement = fixture.debugElement;
-  }));
-
-  it('should increment and decrement value', () => {
-    fixture.componentInstance.increment();
-    expect(fixture.componentInstance.value).toEqual(1);
-
-    fixture.componentInstance.decrement();
-    expect(fixture.componentInstance.value).toEqual(0);
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(OrderService);
   });
 
-  it('should increment value in template', () => {
-    debugElement
-      .query(By.css('button.increment'))
-      .triggerEventHandler('click', null);
-
-    fixture.detectChanges();
-
-    const value = debugElement.query(By.css('h1')).nativeElement.innerText;
-
-    expect(value).toEqual('1');
-  });
-
-  it('should stop at 0 and show minimum message', () => {
-    debugElement
-      .query(By.css('button.decrement'))
-      .triggerEventHandler('click', null);
-
-    fixture.detectChanges();
-
-    const message = debugElement.query(By.css('p.message')).nativeElement.innerText;
-
-    expect(fixture.componentInstance.value).toEqual(0);
-    expect(message).toContain('Minimum');
-  });
-
-  it('should stop at 15 and show maximum message', () => {
-    fixture.componentInstance.value = 15;
-    debugElement
-      .query(By.css('button.increment'))
-      .triggerEventHandler('click', null);
-      
-    fixture.detectChanges();
-
-    const message = debugElement.query(By.css('p.message')).nativeElement.innerText;
-
-    expect(fixture.componentInstance.value).toEqual(15);
-    expect(message).toContain('Maximum');
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
 });
+
+----------------user.service.ts--------------
+import { Injectable } from '@angular/core';
+
+import { User } from '../models/user';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  // Store the active user state
+  private activeUser: User;
+
+  constructor() {}
+
+  getActiveUser() {
+    // We'll return the active user or undefined if no active user
+    // The cast to Readonly<User> here is used to maintain immutability
+    // in our stored state
+    return this.activeUser as Readonly<User>;
+  }
+
+  setActiveUser(user: User) {
+    this.activeUser = user;
+  }
+}
+-----------------order.service.ts-------------
+import { Injectable } from '@angular/core';
+
+import { Order } from './../models/order';
+import { Product } from '../models/product';
+import { UserService } from './user.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class OrderService {
+  constructor(private readonly userService: UserService) {}
+
+  createOrder(product: Product): Order {
+    return {
+      id: Date.now().toString(),
+      user: this.userService.getActiveUser(),
+      product
+    };
+  }
+}
+---------user.service.spec.ts--------------
+it('should set the active user correctly', () => {
+  // Arrange
+  const user: User = {
+    id: 'test',
+    name: 'test'
+  };
+
+  // Act
+  service.setActiveUser(user);
+
+  // Assert
+  expect(service['activeUser'].id).toEqual('test');
+  expect(service['activeUser'].name).toEqual('test');
+});
+
