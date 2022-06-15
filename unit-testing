@@ -99,3 +99,11 @@ it('should create an order correctly', () => {
 });
 -----------
 const userServiceSpy = jasmine.createSpyObj<UserService>('UserService', ['getActiveUser']);
+------------
+TestBed.configureTestingModule({
+  providers: [
+    {
+      provide: UserService,
+      useValue: userServiceSpy
+    }
+  ]
