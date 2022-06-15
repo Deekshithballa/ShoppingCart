@@ -97,3 +97,5 @@ it('should create an order correctly', () => {
   expect(order.user.id).toEqual('test');
   expect(userServiceSpy.getActiveUser).toHaveBeenCalled();
 });
+-----------
+const userServiceSpy = jasmine.createSpyObj<UserService>('UserService', ['getActiveUser']);
