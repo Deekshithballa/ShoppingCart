@@ -78,3 +78,22 @@ it('should set the active user correctly', () => {
   expect(service['activeUser'].name).toEqual('test');
 });
 
+-----------
+it('should create an order correctly', () => {
+  // Arrange
+  const product: Product = {
+    id: 'product',
+    name: 'product',
+    cost: 100
+  };
+
+  userServiceSpy.getActiveUser.and.returnValue({ id: 'test', name: 'test' });
+
+  // Act
+  const order = service.createOrder(product);
+
+  // Assert
+  expect(order.product.id).toEqual('product');
+  expect(order.user.id).toEqual('test');
+  expect(userServiceSpy.getActiveUser).toHaveBeenCalled();
+});
