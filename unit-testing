@@ -10,3 +10,7 @@
  });
  ---------
  
+ it('Value of toBeLessThanValue variable should be less than 10.', () => {
+   const percent = component.toBeLessThanValue;
+   expect(percent).toBeLessThan(10);
+ });
